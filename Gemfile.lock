@@ -105,6 +105,7 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
+    os (1.1.0)
     pg (1.2.3)
     pry (0.13.1)
       coderay (~> 1.1)
@@ -215,6 +216,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jwt
   listen (>= 3.0.5, < 3.2)
+  os
   pg (>= 0.18, < 2.0)
   pry-rails
   puma (~> 4.1)
