@@ -4,24 +4,26 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
-import App from '../frontend/components/app'
+import App from '../frontend/components/app.jsx'
 import configureStore from '../frontend/store/store'
 
-// const Hello = props => (
-//   <div>Hello {props.name}!</div>
-// )
-
-// Hello.defaultProps = {
-//   name: 'David'
-// }
-
-// Hello.propTypes = {
-//   name: PropTypes.string
-// }
+const preloadedState = {
+  ui: {
+    currentUser: {
+      id: null,
+      username: null,
+      email: null,
+    },
+    authToken: localStorage.getItem('credentials'),
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root')
-  const store = configureStore()
+  const store = configureStore(preloadedState)
+
+  //TESTING//
+  window.store = store;
+  //TESTING//
   ReactDOM.render(<App store={store} />, root);
 })

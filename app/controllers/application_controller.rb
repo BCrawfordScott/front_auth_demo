@@ -1,4 +1,9 @@
+require 'json_web_token'
+
 class ApplicationController < ActionController::Base
+
+    attr_reader :current_user
+
     protected
 
     def authenticate_request!
@@ -16,12 +21,11 @@ class ApplicationController < ActionController::Base
     private
 
     def payload
-        auth_header = request.headers['Authorization']
-        token = auth_header.split(' ').last
-        JsonWebToken.decode(token)
+        token = request.headers['Authorization']
+        token == '' ? nil : JsonWebToken.decode(token)
     end
 
     def current_user
-        User.find_by(id: payload.first['user_id'])
+        @current_user ||= User.find_by(id: payload.first['user_id'])
     end
 end

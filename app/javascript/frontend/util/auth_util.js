@@ -1,25 +1,19 @@
-export const signUp = (user) => {
-  return fetch(
-    `/api/users`,
-    {
-      method: 'POST',
-      data: { user }
-    }
-  )
-}
+import { postReq } from "./req_maker";
 
-export const signIn = user => {
-  return fetch(
-    `/api/authentications`,
-    {
-      method: 'POST',
-      data: { user }
-    }
-  )
-}
-
-export const authorizeFetch = token => req_util => {
-  const credentials = { headers: `Authorization: ${token}` }
-  return req_util(credentials) 
+export const signUp = async data => {
+  return await postReq({
+    path: '/api/users',
+    data: { user: data }
+  })
 };
-export const formatAuth = token => ({ headers: `Authorization: ${token}` })
+
+export const signIn = async data => {
+  return await postReq({
+    path: '/api/authentications',
+    data: { user: data },
+  })
+};
+
+export const persistUser = token => localStorage.setItem('credentials', token);
+
+export const removeUser = () => localStorage.removeItem('credentials');

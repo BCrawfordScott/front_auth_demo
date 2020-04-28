@@ -1,0 +1,9 @@
+Files to remove:
+
+auth actions
+auth reducer
+auth selectors
+sign in action
+sign up actions
+logout actions
+auth_api_utils

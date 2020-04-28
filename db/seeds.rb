@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Generate Users
+puts 'Destroying Users...'
+User.destroy_all
+
+User.create!(username: 'Bman86', email: 'bman@appacademy.io', password: 'starwars')
+
+5.times do
+    name = Faker::TvShows::ParksAndRec.character
+    User.create!(
+        username: name,
+        email: Faker::Internet.email(name: name.gsub(/\s+/, "")),
+        password: Faker::Internet.password
+    )
+end
