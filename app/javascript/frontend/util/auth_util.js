@@ -1,14 +1,14 @@
-import { postReq } from "./req_maker";
+import { postRequest } from "./req_maker";
 
 export const signUp = async data => {
-  return await postReq({
+  return await postRequest({
     path: '/api/users',
     data: { user: data }
   })
 };
 
 export const signIn = async data => {
-  return await postReq({
+  return await postRequest({
     path: '/api/authentications',
     data: { user: data },
   })

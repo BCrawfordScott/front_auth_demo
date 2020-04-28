@@ -22,10 +22,11 @@ class ApplicationController < ActionController::Base
 
     def payload
         token = request.headers['Authorization']
-        token == '' ? nil : JsonWebToken.decode(token)
+        @payload ||= token == '' ? nil : JsonWebToken.decode(token)
     end
 
     def current_user
+        return nil unless payload
         @current_user ||= User.find_by(id: payload.first['user_id'])
     end
 end

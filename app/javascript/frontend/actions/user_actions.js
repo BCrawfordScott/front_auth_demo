@@ -65,14 +65,14 @@ export const fetchUser = (id, credentials) => dispatch => {
   );
 }
 
-export const fetchUsers = (credentials) => dispatch => {
+export const fetchUsers = credentials => dispatch => {
   return UserAPIUtil.fetchUsers(credentials).then(
     users => dispatch(receiveUsers(users)),
     error => dispatch(receiveUserErrors(error))
   );
 }
 
-export const fetchCurrentUser = (credentials) => dispatch => {
+export const fetchCurrentUser = credentials => dispatch => {
   return UserAPIUtil.fetchCurrentUser(credentials).then(
     payload => {
       AuthAPIUtil.persistUser(payload.auth_token);

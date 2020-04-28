@@ -7,7 +7,7 @@ const resHandler = async response => {
     }
 }
 
-const makeReq = async ({ path, method, headers, data }) => {
+const makeRequest = async ({ path, method, headers, data }) => {
     const response = await fetch(path, {
         method: method,
         mode: 'cors',
@@ -25,9 +25,9 @@ const makeReq = async ({ path, method, headers, data }) => {
     return resHandler(response);
 }
 
-export const postReq = async ({path, data, credentials}) => {
+export const postRequest = async ({path, data, credentials}) => {
     const headers = { 'Authorization': `${credentials}` };
-    return await makeReq({
+    return await makeRequest({
         method: 'POST',
         path,
         headers,
@@ -35,18 +35,18 @@ export const postReq = async ({path, data, credentials}) => {
     })
 }
 
-export const getReq = async ({ path, credentials }) => {
+export const getRequest = async ({ path, credentials }) => {
     const headers = { 'Authorization': `${credentials}` };
-    return await makeReq({
+    return await makeRequest({
         method: 'GET',
         path,
         headers,
     })
 }
 
-export const deleteReq = async ({ path, data, credentials }) => {
+export const deleteRequest = async ({ path, data, credentials }) => {
     const headers = { 'Authorization': `${credentials}` };
-    return await makeReq({
+    return await makeRequest({
         method: 'DELETE',
         path,
         headers,
